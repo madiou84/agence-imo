@@ -44,7 +44,7 @@
 
     <div class="container mt-5">
         @if (session('success'))
-            <div class="alert alert-success">
+            <div class="alert alert-success" role="alert">
                 {{ session('success') }}
             </div>
         @endif
