@@ -15,8 +15,9 @@
 
         <div class="mt-4">
             <h4>Intéressé par ce bien ?</h4>
+            @include("shared.flash")
 
-            <form action="" method="post" class="vstack gap-3">
+            <form action="{{ route("property.contact", $property) }}" method="post" class="vstack gap-3">
                 @csrf
 
                 <div class="row">
@@ -44,7 +45,7 @@
                 ])
 
                 <div>
-                    <button class="btn btn-primary">Nous contacter</button>
+                    <button type="submit" class="btn btn-primary">Nous contacter</button>
                 </div>
             </form>
         </div>

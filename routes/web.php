@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get("/", [App\Http\Controllers\HomeController::class, "home"])->name("home");
 Route::get("/biens", [App\Http\Controllers\PropertyController::class, "index"])->name("property.index");
 Route::get("/biens/{slug}/{property}", [App\Http\Controllers\PropertyController::class, "show"])->name("property.show");
+Route::post("/biens/{property}/contact", [App\Http\Controllers\PropertyController::class, "contact"])->name("property.contact");
 
 Route::prefix("admin")->name("admin.")->group(function () {
     Route::resource("property", App\Http\Controllers\Admin\PropertyController::class)->except("show");
