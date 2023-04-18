@@ -39,6 +39,8 @@
                     </li>
                 </ul>
             </div>
+
+            @include("shared.auth.nav.links")
         </div>
     </nav>
 

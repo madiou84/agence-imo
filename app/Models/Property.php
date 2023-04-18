@@ -24,6 +24,7 @@ class Property extends Model
         "address",
         "postal_code",
         "sold",
+        "thumbnail"
     ];
 
     public function options(): BelongsToMany
@@ -36,11 +37,12 @@ class Property extends Model
         return Str::slug($this->attributes["title"]);
     }
 
-    public function scopeFilter(Builder $query, array $filters)
+    public function scopeFilter(Builder $query, array $filters): Builder
     {
-        $query->when($filters["surface"] ?? null, function ($query, $surface) {
-            $query->where("surface", ">=", $surface);
-        })
+        return $query
+            ->when($filters["surface"] ?? null, function ($query, $surface) {
+                $query->where("surface", ">=", $surface);
+            })
             ->when($filters["rooms"] ?? null, function ($query, $rooms) {
                 $query->where("rooms", ">=", $rooms);
             })

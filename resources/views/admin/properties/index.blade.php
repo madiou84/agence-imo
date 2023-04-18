@@ -28,14 +28,14 @@
                         <td>{{ $property->city }}</td>
                         <td>
                             <div class="d-flex gap-2 w-100 justify-content-end">
-                                <a href="{{ route("admin.property.edit", $property) }}" class="btn btn-primary">
+                                <a href="{{ route("admin.property.edit", $property) }}" class="btn btn-sm btn-primary">
                                     Editer
                                 </a>
                                 <form action="{{ route("admin.property.destroy", $property) }}" method="post">
                                     @csrf
                                     @method("delete")
 
-                                    <button type="submit" class="btn btn-danger">Supprimer</button>
+                                    <button type="submit" class="btn btn-sm btn-danger">Supprimer</button>
                                 </form>
                             </div>
                         </td>

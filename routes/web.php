@@ -13,12 +13,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::middleware("guest")->name("auth.")->group(function () {
+    Route::get("/login", [App\Http\Controllers\Auth\LoginController::class, "authForm"])->name("loginForm");
+    Route::post("/login", [App\Http\Controllers\Auth\LoginController::class, "doLogin"]);
+
+    Route::get("/register", [App\Http\Controllers\Auth\RegisterController::class, "registerForm"])->name("registerForm");
+    Route::post("/register", [App\Http\Controllers\Auth\RegisterController::class, "doRegister"]);
+});
+
+Route::post("/logout", [App\Http\Controllers\Auth\LogoutController::class, "logout"])
+    ->name("auth.logout")
+    ->middleware("auth");
+
 Route::get("/", [App\Http\Controllers\HomeController::class, "home"])->name("home");
 Route::get("/biens", [App\Http\Controllers\PropertyController::class, "index"])->name("property.index");
 Route::get("/biens/{slug}/{property}", [App\Http\Controllers\PropertyController::class, "show"])->name("property.show");
 Route::post("/biens/{property}/contact", [App\Http\Controllers\PropertyController::class, "contact"])->name("property.contact");
 
-Route::prefix("admin")->name("admin.")->group(function () {
+Route::prefix("admin")->name("admin.")->middleware("auth")->group(function () {
     Route::resource("property", App\Http\Controllers\Admin\PropertyController::class)->except("show");
     Route::resource("option", App\Http\Controllers\Admin\OptionController::class)->except("show");
 });
