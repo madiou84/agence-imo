@@ -20,6 +20,6 @@ class LogoutController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect(route("auth.loginForm"));
+        return redirect(route("auth.loginForm"))->with("success", "Vous avez été bien deconnecté.");
     }
 }

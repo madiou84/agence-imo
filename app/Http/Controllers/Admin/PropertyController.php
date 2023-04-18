@@ -16,7 +16,7 @@ class PropertyController extends Controller
      */
     public function index(): View
     {
-        $properties = Property::query()->orderByDesc("created_at")->paginate(25);
+        $properties = Property::query()->orderByDesc("created_at")->paginate(12);
         return view("admin.properties.index", compact("properties"));
     }
 
@@ -27,19 +27,6 @@ class PropertyController extends Controller
     {
 
         $property = new Property();
-        $property->fill([
-            "rooms" => 3,
-            "floor" => 0,
-            "sold" => false,
-            "surface" => 40,
-            "bedrooms" => 1,
-            "price" => 32000,
-            "city" => "Paris",
-            "postal_code" => 91270,
-            "title" => "Lorem ipsum dolor",
-            "address" => "Vigneux-sur-seine",
-            "description" => "Lorem ipsum dolor",
-        ]);
         return view("admin.properties.create", [
             "property" => $property,
             "options"  => Option::pluck("name", "id")

@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\OptionFormRequest;
 use App\Models\Option;
-use Illuminate\Http\Request;
 
 class OptionController extends Controller
 {
@@ -15,7 +14,7 @@ class OptionController extends Controller
     public function index()
     {
         return view("admin.options.index", [
-            "options" => Option::orderByDesc("created_at")->paginate(25)
+            "options" => Option::orderByDesc("created_at")->paginate(12)
         ]);
     }
 

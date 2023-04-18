@@ -5,7 +5,7 @@
 @section('styles')
     <style>
         .form-signin {
-            max-width: 330px;
+            max-width: 400px;
             padding: 15px;
         }
 
@@ -28,7 +28,9 @@
 @endsection
 
 @section('content')
+
     <main class="form-signin m-auto">
+        @include('shared.flash')
         <div>
             <h1 class="h3 mb-3 fw-normal">Connectez-vous svp</h1>
             <form method="post">

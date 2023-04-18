@@ -15,26 +15,38 @@
 
         <div class="mt-4">
             <h4>Intéressé par ce bien ?</h4>
-            @include("shared.flash")
+            @include('shared.flash')
 
-            <form action="{{ route("property.contact", $property) }}" method="post" class="vstack gap-3">
+            <form action="{{ route('property.contact', $property) }}" method="post" class="vstack gap-3">
                 @csrf
 
                 <div class="row">
-                    @include('shared.input', ['class' => 'col', 'name' => 'lastname', 'label' => 'Nom'])
+                    @include('shared.input', [
+                        'class' => 'col',
+                        'name' => 'lastname',
+                        'label' => 'Nom',
+                        'placeholder' => 'Nom',
+                    ])
                     @include('shared.input', [
                         'class' => 'col',
                         'name' => 'firstname',
                         'label' => 'Prénom',
+                        'placeholder' => 'Prénom',
                     ])
                 </div>
                 <div class="row">
-                    @include('shared.input', ['class' => 'col', 'name' => 'phone', 'label' => 'Téléphone'])
+                    @include('shared.input', [
+                        'class' => 'col',
+                        'name' => 'phone',
+                        'label' => 'Téléphone',
+                        'placeholder' => 'Téléphone',
+                    ])
                     @include('shared.input', [
                         'type' => 'email',
                         'class' => 'col',
                         'name' => 'email',
                         'label' => 'Adresse email',
+                        'placeholder' => 'Adresse email',
                     ])
                 </div>
                 @include('shared.input', [
@@ -42,6 +54,7 @@
                     'class' => 'col',
                     'name' => 'message',
                     'label' => 'Votre message',
+                    'placeholder' => 'Votre message',
                 ])
 
                 <div>

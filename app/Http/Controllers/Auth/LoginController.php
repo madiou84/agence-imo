@@ -14,14 +14,6 @@ class LoginController extends Controller
 {
     public function authForm(): View
     {
-        User::where("email", "john@doe.fr")
-            ->update([
-                "name" => "John Doe",
-                "email" => "john@doe.fr",
-                "email_verified_at" => now(),
-                "password" => bcrypt("qwerty")
-            ]);
-
         return view("auth.login");
     }
 
@@ -34,7 +26,7 @@ class LoginController extends Controller
 
             return redirect()
                 ->intended(route("admin.property.index"))
-                ->with("seccess", "Heureux de vous avoir retrouver.");
+                ->with("success", "Heureux de vous avoir retrouvé.");
         }
 
         return back()->withErrors([
