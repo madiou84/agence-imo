@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\PropertyFormRequest;
 use App\Models\Option;
+use App\Models\Gallery;
 use App\Models\Property;
 use Illuminate\Contracts\View\View;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
+use App\Http\Requests\Admin\PropertyFormRequest;
 
 class PropertyController extends Controller
 {
@@ -29,7 +30,7 @@ class PropertyController extends Controller
         $property = new Property();
         return view("admin.properties.create", [
             "property" => $property,
-            "options"  => Option::pluck("name", "id")
+            "options" => Option::pluck("name", "id")
         ]);
     }
 
@@ -52,7 +53,7 @@ class PropertyController extends Controller
     {
         return view("admin.properties.edit", [
             "property" => $property,
-            "options"  => Option::pluck("name", "id")
+            "options" => Option::pluck("name", "id")
         ]);
     }
 
@@ -80,6 +81,25 @@ class PropertyController extends Controller
         $property->options()->sync(
             $request->validated("options")
         );
+        return to_route("admin.property.index")->with("success", "Le bien à été modifier.");
+    }
+
+    public function showAddFiles(Property $property): View
+    {
+        $galleries = \Auth::user()->galleries()->get();
+        return view("admin.properties.add_gallery", [
+            "property" => $property,
+            "galleries" => $galleries
+        ]);
+    }
+
+    /**
+     * add Files for the specified Properry in storage.
+     */
+    public function addFiles(Property $property, Gallery $gallery): RedirectResponse
+    {
+        $property->galleries()->sync($gallery);
+
         return to_route("admin.property.index")->with("success", "Le bien à été modifier.");
     }
 

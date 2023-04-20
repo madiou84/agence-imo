@@ -4,63 +4,98 @@
 
 @section('content')
     <div class="container">
-        <h1>{{ $property->title }}</h1>
-        <h2>{{ $property->rooms }} pièces - {{ $property->surface }} m²</h2>
 
-        <div class="text-primary fw-bold" style="font-size: 4rem;">
-            {{ number_format($property->price, thousands_separator: ' ') }} €
-        </div>
-
-        <hr>
-
-        <div class="mt-4">
-            <h4>Intéressé par ce bien ?</h4>
-            @include('shared.flash')
-
-            <form action="{{ route('property.contact', $property) }}" method="post" class="vstack gap-3">
-                @csrf
-
-                <div class="row">
-                    @include('shared.input', [
-                        'class' => 'col',
-                        'name' => 'lastname',
-                        'label' => 'Nom',
-                        'placeholder' => 'Nom',
-                    ])
-                    @include('shared.input', [
-                        'class' => 'col',
-                        'name' => 'firstname',
-                        'label' => 'Prénom',
-                        'placeholder' => 'Prénom',
-                    ])
+        <div class="row mt-4">
+            <div class="col">
+                <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="true">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="{{ $property->thumbnail }}"
+                            width="900"
+                            height="475"
+                            class="d-block w-100"
+                            alt="{{ $property->thumbnail }}" />
+                        </div>
+                        <div class="carousel-item">
+                            <img src="{{ $property->thumbnail }}" width="900" height="475" class="d-block w-100" alt="{{ $property->thumbnail }}" />
+                        </div>
+                        <div class="carousel-item">
+                            <img src="{{ $property->thumbnail }}" width="900" height="475" class="d-block w-100" alt="{{ $property->thumbnail }}" />
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
                 </div>
-                <div class="row">
-                    @include('shared.input', [
-                        'class' => 'col',
-                        'name' => 'phone',
-                        'label' => 'Téléphone',
-                        'placeholder' => 'Téléphone',
-                    ])
-                    @include('shared.input', [
-                        'type' => 'email',
-                        'class' => 'col',
-                        'name' => 'email',
-                        'label' => 'Adresse email',
-                        'placeholder' => 'Adresse email',
-                    ])
-                </div>
-                @include('shared.input', [
-                    'type' => 'textarea',
-                    'class' => 'col',
-                    'name' => 'message',
-                    'label' => 'Votre message',
-                    'placeholder' => 'Votre message',
-                ])
+            </div>
 
+            <div class="col">
                 <div>
-                    <button type="submit" class="btn btn-primary">Nous contacter</button>
+                    <h1>{{ $property->title }}</h1>
+                    <h2>{{ $property->rooms }} pièces - {{ $property->surface }} m²</h2>
+
+                    <div class="text-primary fw-bold" style="font-size: 4rem;">
+                        {{ number_format($property->price, thousands_separator: ' ') }} €
+                    </div>
+
+                    <hr>
+
+                    <h4>Intéressé par ce bien ?</h4>
+                    @include('shared.flash')
+
+                    <form action="{{ route('property.contact', $property) }}" method="post" class="vstack gap-3">
+                        @csrf
+
+                        <div class="row">
+                            @include('shared.input', [
+                                'class' => 'col',
+                                'name' => 'firstname',
+                                'label' => 'Prénom',
+                                'placeholder' => 'Prénom',
+                            ])
+                            @include('shared.input', [
+                                'class' => 'col',
+                                'name' => 'lastname',
+                                'label' => 'Nom',
+                                'placeholder' => 'Nom',
+                            ])
+                        </div>
+                        <div class="row">
+                            @include('shared.input', [
+                                'class' => 'col',
+                                'name' => 'phone',
+                                'label' => 'Téléphone',
+                                'placeholder' => 'Téléphone',
+                            ])
+                            @include('shared.input', [
+                                'type' => 'email',
+                                'class' => 'col',
+                                'name' => 'email',
+                                'label' => 'Email',
+                                'placeholder' => 'Email',
+                            ])
+                        </div>
+                        @include('shared.input', [
+                            'type' => 'textarea',
+                            'class' => 'col',
+                            'name' => 'message',
+                            'label' => 'Message',
+                            'placeholder' => 'Message',
+                        ])
+
+                        <div>
+                            <button type="submit" class="btn btn-primary">Nous contacter</button>
+                        </div>
+                    </form>
                 </div>
-            </form>
+            </div>
         </div>
 
         <div class="my-4">

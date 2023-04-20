@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
         $options = \App\Models\Option::factory(20)->create();
 
         \App\Models\Property::factory(50)
-            ->hasAttached($options->random()->all())
+            ->hasAttached($options->random())
             ->create();
     }
 }

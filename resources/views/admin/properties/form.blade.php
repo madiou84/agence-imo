@@ -13,18 +13,18 @@
                 @if ($property->thumbnail)
                     <div class="row">
                         <div class="col-md-8">
-                            <img class="card-img-top object-fit-cover" src="{{ asset($property->thumbnail) }}"
-                                alt="{{ asset($property->thumbnail) }}" />
+                            <img height="425" class="card-img-top object-fit-cover" src="{{ $property->thumbnail }}"
+                                alt="{{ $property->thumbnail }}" />
                         </div>
                         <div class="col-md-4">
                             <div class="col">
-                                <div class="col">
+                                <div class="col-md-6 w-100">
                                     <img width="600" height="200" class="card-img-top object-fit-cover"
-                                        src="{{ asset($property->thumbnail) }}" alt="{{ asset($property->thumbnail) }}" />
+                                        src="{{ $property->thumbnail }}" alt="{{ $property->thumbnail }}" />
                                 </div>
-                                <div class="col">
+                                <div class="col-md-6 w-100 mt-4">
                                     <img width="600" height="200" class="card-img-top object-fit-cover"
-                                        src="{{ asset($property->thumbnail) }}" alt="{{ asset($property->thumbnail) }}" />
+                                        src="{{ $property->thumbnail }}" alt="{{ $property->thumbnail }}" />
                                 </div>
                             </div>
                         </div>

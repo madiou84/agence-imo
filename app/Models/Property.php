@@ -37,6 +37,14 @@ class Property extends Model
         return Str::slug($this->attributes["title"]);
     }
 
+    public function getThumbnailAttribute(): ?string {
+        return $this->attributes["thumbnail"] ? asset($this->attributes["thumbnail"]) : null;
+    }
+
+    public function galleries(): BelongsToMany {
+        return $this->belongsToMany(Gallery::class);
+    }
+
     public function scopeFilter(Builder $query, array $filters): Builder
     {
         return $query

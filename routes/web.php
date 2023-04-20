@@ -31,6 +31,9 @@ Route::get("/biens/{slug}/{property}", [App\Http\Controllers\PropertyController:
 Route::post("/biens/{property}/contact", [App\Http\Controllers\PropertyController::class, "contact"])->name("property.contact");
 
 Route::prefix("admin")->name("admin.")->middleware("auth")->group(function () {
+    Route::get("property/{property}/addFiles", [App\Http\Controllers\Admin\PropertyController::class, "showAddFiles"])->name("property.addFiles");
+    Route::post("property/{property}/files/{gallery}", [App\Http\Controllers\Admin\PropertyController::class, "addFiles"])->name("property.files");
     Route::resource("property", App\Http\Controllers\Admin\PropertyController::class)->except("show");
     Route::resource("option", App\Http\Controllers\Admin\OptionController::class)->except("show");
+    Route::resource("gallery", App\Http\Controllers\Admin\GalleryController::class)->except("edit", "update");
 });
